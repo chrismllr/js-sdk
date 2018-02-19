@@ -1132,13 +1132,7 @@ function testFunc() {
           });
 
           it('should throw an error when trying to update without supplying an _id', (done) => {
-            let expectedErrorMessage;
-            if (dataStoreType === Kinvey.DataStoreType.Network) {
-              expectedErrorMessage = 'Unable to update entity.';
-            }
-            else {
-              expectedErrorMessage = 'The entity provided does not contain an _id';
-            }
+            const expectedErrorMessage = 'The entity provided does not contain an _id';
             storeToTest.update({ test: 'test' })
               .catch((error) => {
                 expect(error.message).to.contain(expectedErrorMessage);
