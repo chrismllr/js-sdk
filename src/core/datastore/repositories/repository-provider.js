@@ -61,10 +61,10 @@ function _chooseOfflineRepo() {
   const storagePrecedence = ensureArray(_getRepoType());
 
   return _getFirstSupportedRepo(storagePrecedence)
-    .catch(() => {
-      const errMsg = 'None of the selected storage providers are supported in this environment.';
-      return Promise.reject(new KinveyError(errMsg));
-    });
+    // .catch((err) => {
+    //   const errMsg = 'None of the selected storage providers are supported in this environment.';
+    //   return Promise.reject(new KinveyError(err.message));
+    // });
 }
 
 function getOfflineRepository() {

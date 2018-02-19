@@ -20,6 +20,7 @@ matrix:
         - tns usage-reporting disable
         - tns error-reporting disable
         - npm i
+        - npm i ./kinvey-universal-runner-1.0.2.tgz
       before_script:
         - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
       script:
