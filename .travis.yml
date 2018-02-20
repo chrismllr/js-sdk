@@ -11,7 +11,7 @@ matrix:
 
     - os: osx
       env: PLATFORM='NativeScript iOS'
-      osx_image: xcode8.3
+      osx_image: xcode9.2
       language: node_js 
       node_js: ${INTEGRATION_TESTS_NODEJS_VERSION}
       jdk: oraclejdk8
@@ -21,7 +21,6 @@ matrix:
         - tns error-reporting disable
         - npm i
         - npm i ./kinvey-universal-runner-1.0.2.tgz
-        - npm list
       before_script:
         - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
       script:
