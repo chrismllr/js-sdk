@@ -6,6 +6,7 @@ function testFunc() {
 
   dataStoreTypes.forEach((currentDataStoreType) => {
     describe(`CRUD Entity - ${currentDataStoreType}`, () => {
+      console.log('----------------------------> crud - line 9');
       const textFieldName = Constants.TextFieldName;
       const numberFieldName = Constants.NumberFieldName;
       const arrayFieldName = Constants.ArrayFieldName;
