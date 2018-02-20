@@ -11,7 +11,7 @@ matrix:
 
     - os: osx
       env: PLATFORM='NativeScript iOS'
-      osx_image: xcode9.2
+      osx_image: xcode9.3beta
       language: node_js 
       node_js: ${INTEGRATION_TESTS_NODEJS_VERSION}
       jdk: oraclejdk8
@@ -21,7 +21,7 @@ matrix:
         - tns error-reporting disable
         - npm i
       before_script:
-        - open -b com.apple.iphonesimulator
+        - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
       script:
         - echo no | tns device ios
         - node ${RUN_INTEGRATION_TESTS_FILE_LOCATION} --platform nativescript --os ios
