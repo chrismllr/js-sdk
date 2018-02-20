@@ -1104,6 +1104,24 @@ function testFunc() {
               .then(() => done())
               .catch(done);
           });
+
+          it('should create 2 concurrent items', (done) => {
+            const itemCount = 2;
+            const entities = [];
+            for (let i = 0; i < itemCount; i++) {
+              entities.push({ _id: utilities.randomString() });
+            }
+
+            Promise.all(entities.map(entity => {
+              return storeToTest.create(entity)
+            }))
+              .then((createdEntities) => {
+                debugger
+                expect(createdEntities.length).to.equal(itemCount);
+                done();
+              })
+              .catch(done);
+          });
         });
 
         describe('update()', () => {

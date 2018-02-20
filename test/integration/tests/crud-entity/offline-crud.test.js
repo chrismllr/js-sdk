@@ -121,6 +121,27 @@ function testFunc() {
               })
               .catch(done);
           });
+
+          it('remove should remove the entity from the backend even if the entity is not found in the cache', (done) => {
+            const entity = utilities.getEntity(utilities.randomString());
+            const query = new Kinvey.Query();
+            query.equalTo('_id', entity._id);
+            storeToTest.save(entity)
+              .then((entity) => syncStore.removeById(entity._id))
+              .then(() => storeToTest.remove(query))
+              .then((result) => {
+                //TODO: Discuss what should be the expected count - currently is returned 0
+                return networkStore.findById(entity._id).toPromise();
+              })
+              .then(() => {
+                return done(new Error(shouldNotBeCalledErrorMessage));
+              })
+              .catch((error) => {
+                expect(error.name).to.equal(notFoundErrorName);
+                done();
+              })
+              .catch(done);
+          });
         });
       }
 
