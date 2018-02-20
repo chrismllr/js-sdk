@@ -166,7 +166,7 @@ function testFunc() {
             })
             .then((syncEntities) => {
               expect(syncEntities.map(e => e.entityId).sort()).to.deep.equal([entity1._id, randomId].sort());
-              const query = new Kinvey.Query().equalTo('_id', entity1._id);
+              const query = new Kinvey.Query().equalTo('_id', randomId);
               return storeToTest.clear(query);
             })
             .then((result) => {
@@ -175,7 +175,7 @@ function testFunc() {
             })
             .then((result) => {
               expect(result.length).to.equal(1);
-              expect(result[0].entityId).to.equal(randomId);
+              expect(result[0].entityId).to.equal(entity1._id);
               done();
             })
             .catch(done);
