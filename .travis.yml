@@ -25,6 +25,7 @@ matrix:
         - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
       script:
         - echo no | tns device ios
+        - instruments -s devices
         - node ${RUN_INTEGRATION_TESTS_FILE_LOCATION} --platform nativescript --os ios
 
 
