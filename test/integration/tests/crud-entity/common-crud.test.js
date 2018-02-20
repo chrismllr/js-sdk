@@ -1105,18 +1105,15 @@ function testFunc() {
               .catch(done);
           });
 
-          it('should create 2 concurrent items', (done) => {
-            const itemCount = 2;
-            const entities = [];
-            for (let i = 0; i < itemCount; i++) {
-              entities.push({ _id: utilities.randomString() });
-            }
-
-            Promise.all(entities.map(entity => {
+          it('should create 10 concurrent items', (done) => {
+            const itemCount = 10;
+            const promises = _.times(itemCount, () => {
+              const entity = utilities.getEntity(utilities.randomString());
               return storeToTest.create(entity)
-            }))
+            });
+
+            Promise.all(promises)
               .then((createdEntities) => {
-                debugger
                 expect(createdEntities.length).to.equal(itemCount);
                 done();
               })
